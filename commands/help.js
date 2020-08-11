@@ -9,6 +9,7 @@ exports.run = async (client, message, args) => {
     .addField("คำสั่งสนุก ๆ", "`.bet` `.slap` `.smug` `.pat` `.unknow`")
     .addField("คำสั่งเงิน", "`.bal` `.work` `.deposit` `.withdraw` `.pay` `.rob` `.fish` `.mine` `.sell`")
     .addField("คำสั่งพนัน", "`.roulette`")
+    .addField("คำสั่งอื่น ๆ", "`.minesend`" "`.fivem-info`")
     .addField("คำสั่งแอดมิน", "`.ban` `.kick` `.purge` `.verify-admin` `.verify-role`")
     message.channel.send(bothelp);
 	
