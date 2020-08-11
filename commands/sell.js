@@ -40,6 +40,7 @@ exports.run = async (client, message, args) => {
 	message.channel.send(sellcom)
 	
 	db.add(`money_${user.id}`, total_items_cost)
+	db.delete(`inv_space_${user.id}`)
 	db.delete(`inv_<:1_:742413101265059911>_${user.id}`)
 	db.delete(`inv_<:2_:742414967919345726>_${user.id}`)
 	db.delete(`inv_<:3_:742414968015683726>_${user.id}`)
