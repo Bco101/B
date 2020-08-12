@@ -3,10 +3,6 @@ exports.run = async (client, message, args) => {
         if (!message.member.hasPermission(['MANAGE_MESSAGES'])) {
 			return message.channel.send("คุณไม่มีอำนาจในการล้างข้อความในดิสนี้");
 		}
-		
-        if (!message.guild.me.hasPermission(['MANAGE_MESSAGES'])) {
-		    return message.channel.send("หลายบาทไม่มีอำนาจในการล้างข้อความในดิสนี้");
-	    }
 
         const amount = parseInt(args[0]) + 1;
 

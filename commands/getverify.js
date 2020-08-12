@@ -68,7 +68,8 @@ let verify_code = await db.fetch(`verify_codes_${that_discord}_${user.id}`)
 
 let verifyembed = new Discord.MessageEmbed()
 .setColor(0xffb73b)
-.setDescription(`กรุณาพิมพ์คำสั่ง\n\n.verify ${verify_code} ${that_discord}`);
+.setImage(`https://flamingtext.com/net-fu/proxy_form.cgi?script=flame-logo&text=${verify_code}&_loc=generate&imageoutput=true`)
+.setDescription(`กรุณาพิมพ์คำสั่ง\n\n.verify โค้ดในรูป ${that_discord}`);
 message.channel.send(verifyembed)
 
 db.set(`getverify_${that_discord}_${user.id}`, Date.now())

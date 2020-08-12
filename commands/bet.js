@@ -19,6 +19,7 @@ exports.run = async (client, message, args) => {
 	message.channel.send(betembed)
 	
 	setTimeout(function(){
+		
 	if (usermention) {
 		if (Math.random() < 0.5) {
 			betembed = new Discord.MessageEmbed()
@@ -34,10 +35,10 @@ exports.run = async (client, message, args) => {
 			.setDescription(message.author.username + " ชนะพนัน !");
 		}
 		
-	message.channel.send(betembed)
+	    message.channel.send(betembed)
 	    .catch(error => message.channel.send("เกิดข้อผิดพลาด"));
+	    }
 		
-	}
 	}, 10000);
 	
 	cooldown.add(message.author.id);
