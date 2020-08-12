@@ -39,7 +39,7 @@ let dmUser = message.author.id;
 let isMember = guild.members.cache.get(dmUser)
 
 await db.delete(`guildinfo.${that_discord}.verify.code.${user.id}`)
-let verify_role = await db.fetch(`guildinfo.${message.guild.id}.verify.role`)
+let verify_role = await db.fetch(`guildinfo.${that_discord}.verify.role`)
 isMember.roles.add(verify_role)
 let verifycomplete = new Discord.MessageEmbed()
 .setColor(0xffb73b)
