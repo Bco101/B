@@ -74,7 +74,7 @@ exports.run = async (client, message, args) => {
 		let result3 = Math.floor((Math.random() * replies.length));
         let amount = getNumber();
 		let amount2 = getNumber();
-		let amount3 = Math.floor(Math.random() * 3) + 1;
+		let amount3 = getNumber();
 		
 		await db.add(`infoUser.${user.id}.inv.space`, amount)
 		await db.add(`infoUser.${user.id}.inv.space`, amount2)
@@ -84,10 +84,10 @@ exports.run = async (client, message, args) => {
 		await db.add(`infoUser.${user.id}.inv.fish.${replies[result3]}`, amount3)
         await db.set(`infoUser.${user.id}.cooldown.fish`, Date.now())
 		
-        let embed2 = new Discord.MessageEmbed()
+        let embed3 = new Discord.MessageEmbed()
         .setColor("#ffb73b")
         .addField("คุณตกปลาได้", `${replies[result]} จำนวน ${amount} ตัว\n${replies[result2]} จำนวน ${amount2} ตัว\n${replies[result3]} จำนวน ${amount3} ตัว`);
-		return message.channel.send(embed2)
+		return message.channel.send(embed3)
 		
 		}
 		
