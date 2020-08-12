@@ -5,25 +5,25 @@ exports.run = async (client, message, args) => {
 	
       let user = message.mentions.users.first() || message.author;
 	  
-	  let nickname = await db.fetch(`profile_nickname_${user.id}`)
+	  let nickname = await db.fetch(`infoUser_${user.id}.profile.nickname`)
 	  if (nickname === null) nickname = 'ไม่ได้ระบุ'
 	  
-	  let gender = await db.fetch(`profile_gender_${user.id}`)
+	  let gender = await db.fetch(`infoUser_${user.id}.profile.gender`)
 	  if (gender === null) gender = 'ไม่ได้ระบุ'
 	  
-	  let prostatus = await db.fetch(`profile_status_${user.id}`)
+	  let prostatus = await db.fetch(`infoUser_${user.id}.profile.prostatus`)
 	  if (prostatus === null) prostatus = 'ไม่ได้ระบุ'
 	  
-	  let money = await db.fetch(`money_${user.id}`)
+	  let money = await db.fetch(`infoUser_${user.id}.money`)
 	  if (money === null) money = 0;
 	  
-	  let bank = await db.fetch(`bank_${user.id}`)
+	  let bank = await db.fetch(`infoUser_${user.id}.bank`)
 	  if (bank === null) bank = 0;
 	  
-	  let roulettewin = await db.fetch(`roulette_win_${user.id}`)
+	  let roulettewin = await db.fetch(`infoUser_${user.id}.stats.roulette_lose`)
 	  if (roulettewin === null) roulettewin = 0;
 	  
-	  let roulettelose = await db.fetch(`roulette_lose_${user.id}`)
+	  let roulettelose = await db.fetch(`infoUser_${user.id}.stats.roulette_win`)
 	  if (roulettelose === null) roulettelose = 0;
 	  
 	  let proembed = new Discord.MessageEmbed()

@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
 	
     let colour = args[0];
 	let money = parseInt(args[1]);
-	let moneydb = await db.fetch(`money_${user.id}`)
+	let moneydb = await db.fetch(`infoUser_${user.id}.money`)
 	
 	let random = Math.floor(Math.random() * 37);
 	
@@ -45,31 +45,31 @@ exports.run = async (client, message, args) => {
 	
 	if (random == 0 && colour == 2) {
         money *= 15
-        db.add(`money_${user.id}`, money)
-		db.add(`roulette_win_${user.id}`, 1)
+        db.add(`infoUser_${user.id}.money`, money)
+		db.add(`infoUser_${user.id}.stats.roulette_win`, 1)
         let moneyEmbed1 = new Discord.MessageEmbed()
         .setColor("#FFFFFF")
         .setDescription(`🟢 คุณชนะและได้เงินจำนวน ${money}\n\nจำนวนคูณเงิน : 15x`);
         message.channel.send(moneyEmbed1)
     } else if (isOdd(random) && colour == 1) {
         money = parseInt(money * 1.5)
-        db.add(`money_${user.id}`, money)
-		db.add(`roulette_win_${user.id}`, 1)
+        db.add(`infoUser_${user.id}.money`, money)
+		db.add(`infoUser_${user.id}.stats.roulette_win`, 1)
         let moneyEmbed2 = new Discord.MessageEmbed()
         .setColor("#FFFFFF")
         .setDescription(`🔴 คุณชนะและได้เงินจำนวน ${money}\n\nจำนวนคูณเงิน : 1.5x`);
         message.channel.send(moneyEmbed2)
     } else if (!isOdd(random) && colour == 0) {
         money = parseInt(money * 2)
-		db.add(`roulette_win_${user.id}`, 1)
-        db.add(`money_${user.id}`, money)
+		db.add(`infoUser_${user.id}.stats.roulette_win`, 1)
+        db.add(`infoUser_${user.id}.money`, money)
         let moneyEmbed3 = new Discord.MessageEmbed()
         .setColor("#FFFFFF")
         .setDescription(`⚫ คุณชนะและได้เงินจำนวน ${money}\n\nจำนวนคูณเงิน : 2x`);
         message.channel.send(moneyEmbed3)
     } else {
-        db.subtract(`money_${user.id}`, money)
-		db.add(`roulette_lose_${user.id}`, 1)
+        db.subtract(`infoUser_${user.id}.money`, money)
+		db.add(`infoUser_${user.id}.stats.roulette_lose`, 1)
         let moneyEmbed4 = new Discord.MessageEmbed()
         .setColor("#FFFFFF")
         .setDescription(`💸 คุณเสียเงินจำนวน ${money}`);

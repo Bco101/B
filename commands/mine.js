@@ -5,7 +5,7 @@ const ms = require("parse-ms");
 exports.run = async (client, message, args) => {
 	
 	let user = message.author;
-	let bpspace = await db.fetch(`inv_space_${user.id}`)
+	let bpspace = await db.fetch(`infoUser_${user.id}.inv.space`)
 	if (bpspace > 100) {
 		let bpmax = new Discord.MessageEmbed()
 		.setColor(0xffb73b)
@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
 		return message.channel.send(bpmax)
 		}
 	
-    let author = await db.fetch(`mine_${user.id}`)
+    let author = await db.fetch(`infoUser_${user.id}.cooldown.mine`)
 	
 	let timeout = 60000;
 	
@@ -39,9 +39,9 @@ exports.run = async (client, message, args) => {
         let result = Math.floor((Math.random() * replies.length));
         let amount = getNumber();
 		
-		await db.add(`inv_space_${user.id}`, amount)
-        await db.add(`inv_${replies[result]}_${user.id}`, amount)
-        await db.set(`mine_${user.id}`, Date.now())
+		await db.add(`infoUser_${user.id}.inv.space`, amount)
+        await db.add(`infoUser_${user.id}.inv.mine.${replies[result]}`, amount)
+        await db.set(`infoUser_${user.id}.cooldown.mine`, Date.now())
 		
         let embed1 = new Discord.MessageEmbed()
         .setColor("#ffb73b")
@@ -55,11 +55,11 @@ exports.run = async (client, message, args) => {
         let amount = getNumber();
         let amount2 = getNumber();
 		
-		await db.add(`inv_space_${user.id}`, amount)
-		await db.add(`inv_space_${user.id}`, amount2)
-        await db.add(`inv_${replies[result]}_${user.id}`, amount)
-        await db.add(`inv_${replies[result2]}_${user.id}`, amount2)
-        await db.set(`mine_${user.id}`, Date.now())
+		await db.add(`infoUser_${user.id}.inv.space`, amount)
+		await db.add(`infoUser_${user.id}.inv.space`, amount2)
+        await db.add(`infoUser_${user.id}.inv.mine.${replies[result]}`, amount)
+        await db.add(`infoUser_${user.id}.inv.mine.${replies[result2]}`, amount2)
+        await db.set(`infoUser_${user.id}.cooldown.mine`, Date.now())
 		
         let embed2 = new Discord.MessageEmbed()
         .setColor("#ffb73b")
@@ -75,13 +75,13 @@ exports.run = async (client, message, args) => {
         let amount2 = getNumber();
         let amount3 = getNumber();
 		
-		await db.add(`inv_space_${user.id}`, amount)
-		await db.add(`inv_space_${user.id}`, amount2)
-		await db.add(`inv_space_${user.id}`, amount3)
-        await db.add(`inv_${replies[result]}_${user.id}`, amount)
-        await db.add(`inv_${replies[result2]}_${user.id}`, amount2)
-        await db.add(`inv_${replies[result3]}_${user.id}`, amount3)
-        await db.set(`mine_${user.id}`, Date.now())
+		await db.add(`infoUser_${user.id}.inv.space`, amount)
+		await db.add(`infoUser_${user.id}.inv.space`, amount2)
+		await db.add(`infoUser_${user.id}.inv.space`, amount3)
+        await db.add(`infoUser_${user.id}.inv.mine.${replies[result]}`, amount)
+        await db.add(`infoUser_${user.id}.inv.mine.${replies[result2]}`, amount2)
+        await db.add(`infoUser_${user.id}.inv.mine.${replies[result3]}`, amount3)
+        await db.set(`infoUser_${user.id}.cooldown.mine`, Date.now())
 		
         let embed3 = new Discord.MessageEmbed()
         .setColor("#ffb73b")

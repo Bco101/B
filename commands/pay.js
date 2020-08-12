@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
 	
 	let money = parseInt(args[1])
 	
-	let member = await db.fetch(`money_${message.author.id}`)
+	let member = await db.fetch(`infoUser_${user.id}.money`)
 	
 	let nomention = new Discord.MessageEmbed()
     .setColor(0xffb73b)
@@ -43,8 +43,8 @@ exports.run = async (client, message, args) => {
 	.setColor(0xffb73b)
 	.setDescription(`💵 ทำการโอนเงินให้ ${user.user.username} จำนวน ${money}`)
 	
-	db.add(`money_${user.id}`, money)
-    db.subtract(`money_${message.author.id}`, money)
+	db.add(`infoUser_${user.id}.money`, money)
+    db.subtract(`infoUser_${message.author.id}.money`, money)
 	message.channel.send(transfer)
 		
 }

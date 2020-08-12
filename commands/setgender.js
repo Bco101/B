@@ -10,8 +10,7 @@ exports.run = async (client, message, args) => {
 	  }
 	  
 	  if (args[0] == 'reset') {
-		  db.set(`profile_gender_${user.id}`, 'ไม่ได้ระบุ')
-		  let gender = await db.fetch(`profile_gender_${user.id}`)
+		  await db.set(`infoUser_${user.id}.profile.gender`, 'ไม่ได้ระบุ')
 		  let genderreset = new Discord.MessageEmbed()
 	      .setColor(0xffb73b)
 	      .setDescription(`ลบเพศเรียบร้อย`);
@@ -20,8 +19,8 @@ exports.run = async (client, message, args) => {
 	  } else {
 	  if (!(args[0]))
 		  return message.channel.send("กรุณาระบุเพศที่ต้องการตั้ง\n\nเช่น `.setgender ชาย`");
-	  db.set(`profile_gender_${user.id}`, args[0])
-	  let gender = await db.fetch(`profile_gender_${user.id}`)
+	  await db.set(`infoUser_${user.id}.profile.gender`, args[0])
+	  let gender = await db.fetch(`infoUser_${user.id}.profile.gender`)
 	  
 	  let genderembed = new Discord.MessageEmbed()
 	  .setColor(0xffb73b)

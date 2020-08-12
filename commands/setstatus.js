@@ -10,8 +10,7 @@ exports.run = async (client, message, args) => {
 	  }
 	  
 	  if (args[0] == 'reset') {
-		  db.set(`profile_status_${user.id}`, 'ไม่ได้ระบุ')
-		  let prostatus = await db.fetch(`profile_status_${user.id}`)
+		  db.set(`infoUser_${user.id}.profile.prostatus`, 'ไม่ได้ระบุ')
 		  let statusreset = new Discord.MessageEmbed()
 	      .setColor(0xffb73b)
 	      .setDescription(`ลบสถานะเรียบร้อย`);
@@ -20,8 +19,8 @@ exports.run = async (client, message, args) => {
 	  } else {
 	  if (!(args[0]))
 		  return message.channel.send("กรุณาระบุสถานะที่ต้องการตั้ง\n\nเช่น `.setstatus รักใครสักคน`");
-	  db.set(`profile_status_${user.id}`, args[0])
-	  let prostatus = await db.fetch(`profile_status_${user.id}`)
+	  await db.set(`infoUser_${user.id}.profile.prostatus`, args[0])
+	  let prostatus = await db.fetch(`infoUser_${user.id}.profile.prostatus`)
 	  
 	  let statusembed = new Discord.MessageEmbed()
 	  .setColor(0xffb73b)

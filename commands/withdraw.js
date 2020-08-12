@@ -5,20 +5,19 @@ exports.run = async (client, message, args) => {
 	
       let user = message.author;
 	  
-	  let member = db.fetch(`money_${user.id}`)
-      let member2 = db.fetch(`bank_${user.id}`)
+	  let money = db.fetch(`infoUser_${user.id}.money`)
+      let bank = db.fetch(`infoUser_${user.id}.bank`)
 	  
 	  if (args[0] == 'all') {
-        let money = await db.fetch(`bank_${user.id}`)
 		
 		let nomoneyinbank = new Discord.MessageEmbed()
 		.setColor(0xffb73b)
 		.setDescription("คุณไม่มีเงินให้ถอน")
 		
-		if(money === 0) return message.channel.send(nomoneyinbank)
+		if(bank === 0) return message.channel.send(nomoneyinbank)
 		
-		db.subtract(`bank_${user.id}`, money)
-        db.add(`money_${user.id}`, money)
+		db.subtract(`infoUser_${user.id}.bank`, money)
+        db.add(`infoUser_${user.id}.money`, money)
 			
 		let withdrawallmoney = new Discord.MessageEmbed()
 		.setColor(0xffb73b)
@@ -49,7 +48,7 @@ exports.run = async (client, message, args) => {
 		.setColor(0xffb73b)
 		.setDescription("คุณไม่มีเงินจำนวนที่ว่า");
 		
-		if (member2 < moneydabank) {
+		if (bank < moneydabank) {
 			return message.channel.send(donthavethatmuch)
 		}
 	    
@@ -57,8 +56,8 @@ exports.run = async (client, message, args) => {
 		.setColor(0xffb73b)
 		.setDescription(`คุณได้ถอนเงินจำนวน ${moneydabank} จากธนาคารแล้ว`);
 		
-		db.subtract(`bank_${user.id}`, moneydabank)
-		db.add(`money_${user.id}`, moneydabank)
+		db.subtract(`infoUser_${user.id}.bank`, moneydabank)
+		db.add(`infoUser_${user.id}.money`, moneydabank)
 		message.channel.send(moneywithdrawed)
 		}
 		

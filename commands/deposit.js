@@ -5,12 +5,10 @@ exports.run = async (client, message, args) => {
 	
       let user = message.author;
 	  
-	  let member = db.fetch(`money_${user.id}`)
-      let member2 = db.fetch(`bank_${user.id}`)
+	  let money = await db.fetch(`infoUser_${user.id}.money`)
+      let bank = await db.fetch(`infoUser_${user.id}.bank`)
 	  
 	  if (args[0] == 'all') {
-        let money = await db.fetch(`money_${user.id}`)
-        let bank = await db.fetch(`bank_${user.id}`)
 		
 		let embedbank = new Discord.MessageEmbed()
 		.setColor(0xffb73b)
@@ -18,8 +16,8 @@ exports.run = async (client, message, args) => {
 		
 		if(money === 0) return message.channel.send(embedbank)
 			
-		db.add(`bank_${user.id}`, money)
-		db.subtract(`money_${user.id}`, money)
+		db.add(`infoUser_${user.id}.bank`, money)
+		db.subtract(`infoUser_${user.id}.money`, money)
 		let depositallmoney = new Discord.MessageEmbed()
 		.setColor(0xffb73b)
         .setDescription("ฝากเงินทั้งหมดเรียบร้อยแล้ว");
@@ -49,7 +47,7 @@ exports.run = async (client, message, args) => {
 		.setColor(0xffb73b)
 		.setDescription("คุณไม่มีเงินจำนวนที่ว่า");
 		
-		if (member < moneypocket) {
+		if (money < moneypocket) {
 			return message.channel.send(donthavethatmuch)
 		}
 	    
@@ -57,8 +55,8 @@ exports.run = async (client, message, args) => {
 		.setColor(0xffb73b)
 		.setDescription(`คุณได้ฝากเงินจำนวน ${moneypocket} เข้าธนาคารแล้ว`);
 		
-		db.add(`bank_${user.id}`, moneypocket)
-		db.subtract(`money_${user.id}`, moneypocket)
+		db.add(`infoUser_${user.id}.bank`, moneypocket)
+		db.subtract(`infoUser_${user.id}.money`, moneypocket)
 		message.channel.send(moneydeposited)
 		}
 		

@@ -5,8 +5,8 @@ const ms = require("parse-ms");
 exports.run = async (client, message, args) => {
 	
 let user = message.mentions.members.first()
-let author = await db.fetch(`rob_${message.author.id}`)
-let author2 = await db.fetch(`money_${message.author.id}`)
+let author = await db.fetch(`infoUser_${user.id}.cooldown.rob`)
+let author2 = await db.fetch(`infoUser_${user.id}.money`)
 
 let timeout = 600000;
 
@@ -27,7 +27,7 @@ if (!user) {
     return message.channel.send(pleasemention)
 }
 	  
-let targetuser = await db.fetch(`money_${user.id}`)
+let targetuser = await db.fetch(`infoUser_${user.id}.money`)
 
 let robyourself = new Discord.MessageEmbed()
   .setColor(0xffb73b)
@@ -60,9 +60,9 @@ let embed = new Discord.MessageEmbed()
 .setColor(0xffb73b)
 message.channel.send(embed)
 
-db.subtract(`money_${user.id}`, random)
-db.add(`money_${message.author.id}`, random)
-db.set(`rob_${message.author.id}`, Date.now())
+db.subtract(`infoUser_${user.id}.money`, random)
+db.add(`infoUser_${message.author.id}.money`, random)
+db.set(`infoUser_${message.author.id}.cooldown.rob`, Date.now())
   
 };
 	

@@ -25,8 +25,8 @@ exports.run = async (client, message, args) => {
     return message.channel.send(noamount)
 	}
 	
-    db.add(`money_${user.id}`, args[1])
-    let bal = await db.fetch(`money_${user.id}`)
+    db.add(`infoUser_${user.id}.money`, args[1])
+    let bal = await db.fetch(`infoUser_${user.id}.money`)
 	  
 	let SendMoney = new Discord.MessageEmbed()
     .setColor(0xffb73b)

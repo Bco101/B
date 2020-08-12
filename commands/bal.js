@@ -5,8 +5,8 @@ exports.run = async (client, message, args) => {
 	
       let user = message.mentions.users.first() || message.author;
 	  
-	  let bal = await db.fetch(`money_${user.id}`)  
-	  let bank = await db.fetch(`bank_${user.id}`)
+	  let bal = await db.fetch(`infoUser_${user.id}.money`)  
+	  let bank = await db.fetch(`infoUser_${user.id}.bank`)
 	  
 	  bal = bal || 0
 	  bank = bank || 0
