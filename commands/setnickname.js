@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
 	  }
 	  
 	  if (args[0] == 'reset') {
-		  db.set(`infoUser_${user.id}.profile.nickname`, 'ไม่ได้ระบุ')
+		  db.set(`infoUser.${user.id}.profile.nickname`, 'ไม่ได้ระบุ')
 		  let nickreset = new Discord.MessageEmbed()
 	      .setColor(0xffb73b)
 	      .setDescription(`ลบชื่อเล่นเรียบร้อย`);
@@ -19,8 +19,8 @@ exports.run = async (client, message, args) => {
 	  } else {
 	  if (!(args[0]))
 		  return message.channel.send("กรุณาระบุชื่อเล่นที่ต้องการตั้ง\n\nเช่น `.setnickname ต้น`");
-	  await db.set(`infoUser_${user.id}.profile.nickname`, args[0])
-	  let nickname = await db.fetch(`infoUser_${user.id}.profile.nickname`)
+	  await db.set(`infoUser.${user.id}.profile.nickname`, args[0])
+	  let nickname = await db.fetch(`infoUser.${user.id}.profile.nickname`)
 	  
 	  let nickembed = new Discord.MessageEmbed()
 	  .setColor(0xffb73b)

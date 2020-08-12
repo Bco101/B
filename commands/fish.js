@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
 	
 	let user = message.author;
 	
-	let bpspace = await db.fetch(`infoUser_${user.id}.inv.space`)
+	let bpspace = await db.fetch(`infoUser.${user.id}.inv.space`)
 	if (bpspace > 100) {
 		let bpmax = new Discord.MessageEmbed()
 		.setColor(0xffb73b)
@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
 		return message.channel.send(bpmax)
 		}
 	
-    let author = await db.fetch(`infoUser_${user.id}.cooldown.fish`)
+    let author = await db.fetch(`infoUser.${user.id}.cooldown.fish`)
 	
 	let timeout = 60000;
 	
@@ -40,9 +40,9 @@ exports.run = async (client, message, args) => {
         let result = Math.floor((Math.random() * replies.length));
         let amount = getNumber();
 		
-		await db.add(`infoUser_${user.id}.inv.space`, amount)
-        await db.add(`infoUser_${user.id}.inv.fish.${replies[result]}`, amount)
-        await db.set(`infoUser_${user.id}.cooldown.fish`, Date.now())
+		await db.add(`infoUser.${user.id}.inv.space`, amount)
+        await db.add(`infoUser.${user.id}.inv.fish.${replies[result]}`, amount)
+        await db.set(`infoUser.${user.id}.cooldown.fish`, Date.now())
 		
         let embed1 = new Discord.MessageEmbed()
         .setColor("#ffb73b")
@@ -56,11 +56,11 @@ exports.run = async (client, message, args) => {
         let amount = getNumber();
 		let amount2 = getNumber();
 		
-		await db.add(`infoUser_${user.id}.inv.space`, amount)
-		await db.add(`infoUser_${user.id}.inv.space`, amount2)
-        await db.add(`infoUser_${user.id}.inv.fish.${replies[result]}`, amount)
-		await db.add(`infoUser_${user.id}.inv.fish.${replies[result2]}`, amount2)
-        await db.set(`infoUser_${user.id}.cooldown.fish`, Date.now())
+		await db.add(`infoUser.${user.id}.inv.space`, amount)
+		await db.add(`infoUser.${user.id}.inv.space`, amount2)
+        await db.add(`infoUser.${user.id}.inv.fish.${replies[result]}`, amount)
+		await db.add(`infoUser.${user.id}.inv.fish.${replies[result2]}`, amount2)
+        await db.set(`infoUser.${user.id}.cooldown.fish`, Date.now())
 		
         let embed2 = new Discord.MessageEmbed()
         .setColor("#ffb73b")
@@ -76,13 +76,13 @@ exports.run = async (client, message, args) => {
 		let amount2 = getNumber();
 		let amount3 = Math.floor(Math.random() * 3) + 1;
 		
-		await db.add(`infoUser_${user.id}.inv.space`, amount)
-		await db.add(`infoUser_${user.id}.inv.space`, amount2)
-		await db.add(`infoUser_${user.id}.inv.space`, amount3)
-        await db.add(`infoUser_${user.id}.inv.fish.${replies[result]}`, amount)
-		await db.add(`infoUser_${user.id}.inv.fish.${replies[result2]}`, amount2)
-		await db.add(`infoUser_${user.id}.inv.fish.${replies[result3]}`, amount3)
-        await db.set(`infoUser_${user.id}.cooldown.fish`, Date.now())
+		await db.add(`infoUser.${user.id}.inv.space`, amount)
+		await db.add(`infoUser.${user.id}.inv.space`, amount2)
+		await db.add(`infoUser.${user.id}.inv.space`, amount3)
+        await db.add(`infoUser.${user.id}.inv.fish.${replies[result]}`, amount)
+		await db.add(`infoUser.${user.id}.inv.fish.${replies[result2]}`, amount2)
+		await db.add(`infoUser.${user.id}.inv.fish.${replies[result3]}`, amount3)
+        await db.set(`infoUser.${user.id}.cooldown.fish`, Date.now())
 		
         let embed2 = new Discord.MessageEmbed()
         .setColor("#ffb73b")

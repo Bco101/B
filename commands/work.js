@@ -5,7 +5,7 @@ const ms = require("parse-ms");
 exports.run = async (client, message, args) => {
 	
 	let user = message.author;
-    let author = await db.fetch(`infoUser_${user.id}.cooldown.work`)
+    let author = await db.fetch(`infoUser.${user.id}.cooldown.work`)
 	
 	let timeout = 60000;
 	
@@ -27,8 +27,8 @@ exports.run = async (client, message, args) => {
         .setDescription(`คุณได้ทำงานเป็น ${replies[result]} และได้เงินจำนวน ${amount}`);
         message.channel.send(embed1)
         
-        db.add(`infoUser_${user.id}.money`, amount)
-        db.set(`infoUser_${user.id}.cooldown.work`, Date.now())
+        db.add(`infoUser.${user.id}.money`, amount)
+        db.set(`infoUser.${user.id}.cooldown.work`, Date.now())
     };
 		
 }

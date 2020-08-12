@@ -14,7 +14,7 @@ if (!args[0]) {
 let that_discord = (args[0])
 	
 let user = message.author;
-let author = await db.fetch(`getverify_${that_discord}_${user.id}`)
+let author = await db.fetch(`guildinfo.${that_discord}.verify.cooldown.${user.id}`)
 	
 let timeout = 3600000;
 	
@@ -27,8 +27,8 @@ if (author !== null && timeout - (Date.now() - author) > 0) {
     message.channel.send(timeEmbed)
 } else {
 	
-let verify_status_db = await db.fetch(`verify_status_${that_discord}`)
-let verify_role_db = await db.fetch(`verify_role_${that_discord}`)
+let verify_status_db = await db.fetch(`guildinfo.${that_discord}.verify.status`)
+let verify_role_db = await db.fetch(`guildinfo.${that_discord}.verify.role`)
 
 if (verify_status_db == null) {
 	let verifyEmbednull = new Discord.MessageEmbed()
@@ -62,9 +62,9 @@ const shortcode = (n) => {
 
 const verifytoken = shortcode(8)
 
-await db.set(`verify_codes_${that_discord}_${user.id}`, verifytoken)
+await db.set(`guildinfo.${that_discord}.verify.code.${user.id}`, verifytoken)
 
-let verify_code = await db.fetch(`verify_codes_${that_discord}_${user.id}`)
+let verify_code = await db.fetch(`guildinfo.${that_discord}.verify.code.${user.id}`)
 
 let verifyembed = new Discord.MessageEmbed()
 .setColor(0xffb73b)
@@ -72,7 +72,7 @@ let verifyembed = new Discord.MessageEmbed()
 .setDescription(`กรุณาพิมพ์คำสั่ง\n\n.verify โค้ดในรูป ${that_discord}`);
 message.channel.send(verifyembed)
 
-db.set(`getverify_${that_discord}_${user.id}`, Date.now())
+db.set(`guildinfo.${that_discord}.verify.cooldown.${user.id}`, Date.now())
 }
 }
 

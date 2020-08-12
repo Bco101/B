@@ -14,7 +14,7 @@ let that_discord = (args[1])
 
 let user = message.author;
 	
-let verify_code = await db.fetch(`verify_codes_${that_discord}_${user.id}`)
+let verify_code = await db.fetch(`guildinfo.${that_discord}.verify.code.${user.id}`)
 
 if (verify_code == null) {
 	let verifyCodenull = new Discord.MessageEmbed()
@@ -38,8 +38,8 @@ let guild = client.guilds.cache.get(that_discord);
 let dmUser = message.author.id;
 let isMember = guild.members.cache.get(dmUser)
 
-await db.delete(`verify_codes_${that_discord}_${user.id}`)
-let verify_role = await db.fetch(`verify_role_${that_discord}`)
+await db.delete(`guildinfo.${that_discord}.verify.code.${user.id}`)
+let verify_role = await db.fetch(`guildinfo.${message.guild.id}.verify.role`)
 isMember.roles.add(verify_role)
 let verifycomplete = new Discord.MessageEmbed()
 .setColor(0xffb73b)

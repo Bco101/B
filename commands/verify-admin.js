@@ -14,8 +14,8 @@ if (!args[0]) {
 let verify_status = (args[0])
 
 if (args[0] == 'on') {
-	await db.set(`verify_status_${message.guild.id}`, 'เปิด')
-	let verify_status_db = await db.fetch(`verify_status_${message.guild.id}`)
+	await db.set(`guildinfo.${message.guild.id}.verify.status`, 'เปิด')
+	let verify_status_db = await db.fetch(`guildinfo.${message.guild.id}.verify.status`)
 	let verifyembed = new Discord.MessageEmbed()
 	.setColor(0xffb73b)
     .setDescription(`สถานะเปิดใช้งานยืนยันตัว\n\nสถานะ : ${verify_status_db}`);
@@ -23,8 +23,8 @@ if (args[0] == 'on') {
     }
 	
 if (args[0] == 'off') {
-	await db.set(`verify_status_${message.guild.id}`, 'ปิด')
-	let verify_status_db = await db.fetch(`verify_status_${message.guild.id}`)
+	await db.set(`guildinfo.${message.guild.id}.verify.status`, 'ปิด')
+	let verify_status_db = await db.fetch(`guildinfo.${message.guild.id}.verify.status`)
 	let verifyembed = new Discord.MessageEmbed()
 	.setColor(0xffb73b)
     .setDescription(`สถานะเปิดใช้งานยืนยันตัว\n\nสถานะ : ${verify_status_db}`);

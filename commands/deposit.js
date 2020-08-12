@@ -5,8 +5,8 @@ exports.run = async (client, message, args) => {
 	
       let user = message.author;
 	  
-	  let money = await db.fetch(`infoUser_${user.id}.money`)
-      let bank = await db.fetch(`infoUser_${user.id}.bank`)
+	  let money = await db.fetch(`infoUser.${user.id}.money`)
+      let bank = await db.fetch(`infoUser.${user.id}.bank`)
 	  
 	  if (args[0] == 'all') {
 		
@@ -16,8 +16,8 @@ exports.run = async (client, message, args) => {
 		
 		if(money === 0) return message.channel.send(embedbank)
 			
-		db.add(`infoUser_${user.id}.bank`, money)
-		db.subtract(`infoUser_${user.id}.money`, money)
+		db.add(`infoUser.${user.id}.bank`, money)
+		db.subtract(`infoUser.${user.id}.money`, money)
 		let depositallmoney = new Discord.MessageEmbed()
 		.setColor(0xffb73b)
         .setDescription("ฝากเงินทั้งหมดเรียบร้อยแล้ว");
@@ -55,8 +55,8 @@ exports.run = async (client, message, args) => {
 		.setColor(0xffb73b)
 		.setDescription(`คุณได้ฝากเงินจำนวน ${moneypocket} เข้าธนาคารแล้ว`);
 		
-		db.add(`infoUser_${user.id}.bank`, moneypocket)
-		db.subtract(`infoUser_${user.id}.money`, moneypocket)
+		db.add(`infoUser.${user.id}.bank`, moneypocket)
+		db.subtract(`infoUser.${user.id}.money`, moneypocket)
 		message.channel.send(moneydeposited)
 		}
 		
