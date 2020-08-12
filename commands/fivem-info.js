@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const FiveM = require("fivem");
-const FiveShit = require("../apis/fivem-dynamic.js");
+const FiveM_Dynamic = require("../apis/fivem-dynamic.js");
 
 exports.run = async (client, message, args) => {
 	
@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
     }
 	
 	let fivemip = new FiveM.Server(`${whatip}`)
-	let fiveshitip = new FiveShit.Server(`${whatip}`)
+	let fivemdynamicip = new FiveM_Dynamic.Server(`${whatip}`)
 	let isonline = await fivemip.getServerStatus().then(function(data) {return data;})
 	
 	if (isonline == false) {
@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
 	return message.channel.send(notonline)
 	}
 	
-	let whathn = await fiveshitip.getHostname().then(function(data) {return data;})
+	let whathn = await fivemdynamicip.getHostname().then(function(data) {return data;})
 	whathn = whathn.replace(/\^0/g, "").replace(/\^1/g, "").replace(/\^2/g, "").replace(/\^3/g, "").replace(/\^4/g, "").replace(/\^5/g, "").replace(/\^6/g, "").replace(/\^7/g, "").replace(/\^8/g, "").replace(/\^9/g, "")
 	let pyamout = await fivemip.getPlayers().then(function(data) {return data;})
 	let maxinfo = await fivemip.getMaxPlayers().then(function(data) {return data;})
