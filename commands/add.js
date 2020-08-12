@@ -4,7 +4,7 @@ const db = require("quick.db");
 exports.run = async (client, message, args) => {
 	
 	if (message.author.id !== client.config.ownerid) {
-	    return message.channel.send("เฉพาะเจ้าของบอทเท่านั้นที่ใช้คำสั่งนี้ได้");
+	return message.channel.send("เฉพาะเจ้าของบอทเท่านั้นที่ใช้คำสั่งนี้ได้")
 	}
 	
     let user = message.mentions.members.first();
