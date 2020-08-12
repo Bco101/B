@@ -2,7 +2,7 @@ const axios = require('axios');
 
 class Server {
 	constructor(ip) {
-		if (!ip) throw 'Please provide an IP when using the FiveM class!';
+		if (!ip) throw 'กรุณาระบุ IP !';
 		this.ip = ip;
 	}
 
