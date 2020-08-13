@@ -19,5 +19,5 @@ exports.run = async (client, message, args) => {
 	for (var i = 0; i < optionslist.length; i++) { 
             sentEmbed.react(reactlist[i])
         }
-	)}
+	})
 }
