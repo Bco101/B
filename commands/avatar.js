@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
   const avatarEmbed = new Discord.MessageEmbed()
         .setColor(0xffb73b)
         .setAuthor("รูปโปรไฟล์ " + user.username)
-        .setImage(user.avatarURL() + "?size=512");
+        .setImage(user.avatarURL({dynamic : true}) + "?size=512");
   message.channel.send(avatarEmbed);
   cooldown.add(message.author.id);
         setTimeout(() => {
